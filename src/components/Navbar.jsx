@@ -6,7 +6,7 @@ import {
 
     const NavigationBar = () => {
         return (
-            <Navbar>
+            <Navbar bg='light' variant='light' >
                 <Container>
                     <Navbar.Brand>茶友</Navbar.Brand>
                     <Navbar.Toggle aria-controls='basic-navbar-nav' />

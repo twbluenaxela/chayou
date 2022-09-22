@@ -1,9 +1,26 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import NavigationBar from './components/Navbar'
+import Homepage from './views/Homepage'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [selectedTea, setSelectedTea] = useState('')
+
+  const setTeaHandler = (teaType) => {
+    console.log('Tea type: (App) ', teaType)
+    setSelectedTea('green')
+    console.log('Current tea selected: ', selectedTea)
+  }
+
+  if(selectedTea === '') {
+    return (
+      <div>
+        <NavigationBar />
+        <Homepage setTeaHandler={setTeaHandler}/>
+      </div>
+    )
+  }
 
   return (
     <div className="App">
