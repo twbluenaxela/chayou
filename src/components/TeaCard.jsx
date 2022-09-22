@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import './TeaCardStyles.css'
 import teaIcon from '../assets/icons8-tea-tin-100.png'
+import { Link, useNavigate } from "react-router-dom";
 
-const TeaCard = ({ color, type, setTeaHandler }) => {
+const TeaCard = ({ tea, setSelectedTea }) => {
+
+    const navigate = useNavigate()
+
+    const { color, type, name } = tea
     const handleSetTea = (e) => {
-        e.preventDefault()
-        console.log('Type: ', type)
-        setTeaHandler(type)
+        console.log('Type: ', tea.type)
+        setSelectedTea(tea)
+        navigate(`/${name}`)
     }
+    // console.log('name: ', name)
 
     return (
         <Card 
@@ -19,8 +25,7 @@ const TeaCard = ({ color, type, setTeaHandler }) => {
             <Card.Img variant='center' src={teaIcon} />
             <Card.ImgOverlay>
             <Card.Body style={{ display: 'grid', placeItems: 'center' }} >
-                <Card.Title style={{ color: 'white' }}  >{type}</Card.Title>
-
+                <Card.Title style={{ color: 'white', fontWeight: 'bold', fontSize: '25px' }}  >{type}</Card.Title>
             </Card.Body>
 
             </Card.ImgOverlay>

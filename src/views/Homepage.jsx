@@ -1,35 +1,10 @@
 import { useState, useEffect } from "react";
-import TeaCard from "./TeaCard";
+import TeaCard from "../components/TeaCard";
 import test from '../assets/react.svg'
 
-const Homepage = ({ setTeaHandler }) => {
+const Homepage = ({ teaList, setSelectedTea }) => {
 
-    const listOfTeas = [
-        {
-            color: '#A7DB42',
-            type: '绿茶',
-            icon: test,
-            name: 'greentea'
-        },
-        {
-            color: '#c83c23',
-            type: '紅茶',
-            icon: test,
-            name: 'blacktea'
-        },
-        {
-            color: '#8b0000',
-            type: '普爾',
-            icon: test,
-            name: 'puer'
-        },
-        {
-            color: '#FFA500',
-            type: '烏龍茶',
-            icon: test,
-            name: 'wulong'
-        }
-    ]
+    
 
     return (
         <div>
@@ -37,8 +12,8 @@ const Homepage = ({ setTeaHandler }) => {
                 <h1>我想喝。。。</h1>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center'}}>
-            {listOfTeas.map((tea) => (
-                <TeaCard color={tea.color} type={tea.type} key={tea.name} setTeaHandler={setTeaHandler} />
+            {teaList.map((tea) => (
+                <TeaCard key={tea.name} tea={tea} setSelectedTea={setSelectedTea} />
             ))}
             </div>
         </div>

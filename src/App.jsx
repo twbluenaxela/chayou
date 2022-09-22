@@ -1,50 +1,59 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import NavigationBar from './components/Navbar'
 import Homepage from './views/Homepage'
+import TeaPage from './views/TeaPage'
+
+const listOfTeas = [
+  {
+      color: '#A7DB42',
+      type: '绿茶',
+      name: 'green'
+  },
+  {
+      color: '#c83c23',
+      type: '紅茶',
+      name: 'black'
+  },
+  {
+      color: '#8b0000',
+      type: '普爾',
+      name: 'puer'
+  },
+  {
+      color: '#FFA500',
+      type: '烏龍茶',
+      name: 'wulong'
+  }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
   const [selectedTea, setSelectedTea] = useState('')
+  const [teaList, setTeaList] = useState([...listOfTeas])
 
-  const setTeaHandler = (teaType) => {
-    console.log('Tea type: (App) ', teaType)
-    setSelectedTea('green')
-    console.log('Current tea selected: ', selectedTea)
-  }
+  // const setTeaHandler = (teaType) => {
+  //   console.log('Tea type: (App) ', teaType)
+  //   setSelectedTea(teaType)
+  //   console.log('Current tea selected: ', selectedTea)
+  // }
+  // console.log('Currently selected tea: ', selectedTea)
 
-  if(selectedTea === '') {
-    return (
-      <div>
-        <NavigationBar />
-        <Homepage setTeaHandler={setTeaHandler}/>
-      </div>
-    )
+  const findObjectByTeaName = (teaName) => {
+    const teaObject = teaList.find((tea) => tea.name === teaName)
+    console.log('Found: ', teaObject)
+    return teaObject
   }
 
   return (
     <div className="App">
       <NavigationBar />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React weee</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path='/' element={<Homepage setSelectedTea={setSelectedTea} teaList={teaList} />} />
+        {teaList.map((tea) =>
+          <Route key={tea.name} path={`/${tea.name}`} element={<TeaPage tea={tea} />} /> 
+        )}
+      </Routes>
     </div>
   )
 }
