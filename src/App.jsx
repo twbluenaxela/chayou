@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import reactLogo from './assets/react.svg'
 import NavigationBar from './components/Navbar'
 import Homepage from './views/Homepage'
-import TeaPage from './views/TeaPage'
+import TeaSubTypePage from './views/TeaSubTypePage'
+import TeaSearchResults from './views/TeaSearchResults'
 
 const listOfTeas = [
   {
@@ -28,16 +28,17 @@ const listOfTeas = [
   }
 ]
 
-function App() {
-  const [selectedTea, setSelectedTea] = useState('')
+const App = () => {
+  const [selectedTeaCategory, setSelectedTeaCategory] = useState('')
   const [teaList, setTeaList] = useState([...listOfTeas])
+  const [selectedTea, setSelectedTea] = useState(null)
 
   // const setTeaHandler = (teaType) => {
   //   console.log('Tea type: (App) ', teaType)
   //   setSelectedTea(teaType)
   //   console.log('Current tea selected: ', selectedTea)
   // }
-  // console.log('Currently selected tea: ', selectedTea)
+  console.log('Currently selected tea: ', selectedTea)
 
   const findObjectByTeaName = (teaName) => {
     const teaObject = teaList.find((tea) => tea.name === teaName)
@@ -49,9 +50,12 @@ function App() {
     <div className="App">
       <NavigationBar />
       <Routes>
-        <Route path='/' element={<Homepage setSelectedTea={setSelectedTea} teaList={teaList} />} />
+        <Route path='/' element={<Homepage setSelectedTeaCategory={setSelectedTeaCategory} teaList={teaList} />} />
+        <Route path={`/search`} element={selectedTea && <TeaSearchResults teaToSearchFor={ selectedTea } />}>
+          {selectedTea && <Route path={`/search/${selectedTea}`} element={<TeaSearchResults teaToSearchFor={ selectedTea } />} />}
+        </Route>
         {teaList.map((tea) =>
-          <Route key={tea.name} path={`/${tea.name}`} element={<TeaPage tea={tea} />} /> 
+          <Route key={tea.name} path={`/${tea.name}`} element={ <TeaSubTypePage key={tea.name} tea={tea} setSelectedTea={setSelectedTea} /> } /> 
         )}
       </Routes>
     </div>

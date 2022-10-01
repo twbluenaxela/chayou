@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import TeaCard from "../components/TeaCard";
+import TeaCategoryCard from "../components/TeaCategoryCard";
 import test from '../assets/react.svg'
 
-const Homepage = ({ teaList, setSelectedTea }) => {
-
-    
+const Homepage = ({ teaList, setSelectedTeaCategory }) => {
 
     return (
         <div>
@@ -13,7 +11,7 @@ const Homepage = ({ teaList, setSelectedTea }) => {
             </div>
             <div style={{display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center'}}>
             {teaList.map((tea) => (
-                <TeaCard key={tea.name} tea={tea} setSelectedTea={setSelectedTea} />
+                <TeaCategoryCard key={tea.name} tea={tea} setSelectedTeaCategory={setSelectedTeaCategory} />
             ))}
             </div>
         </div>
