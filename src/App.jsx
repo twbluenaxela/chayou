@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import NavigationBar from './components/Navbar'
 import Homepage from './views/Homepage'
 import TeaSubTypePage from './views/TeaSubTypePage'
@@ -32,6 +32,7 @@ const App = () => {
   const [selectedTeaCategory, setSelectedTeaCategory] = useState('')
   const [teaList, setTeaList] = useState([...listOfTeas])
   const [selectedTea, setSelectedTea] = useState(null)
+  const navigate = useNavigate()
 
   // const setTeaHandler = (teaType) => {
   //   console.log('Tea type: (App) ', teaType)
@@ -46,16 +47,23 @@ const App = () => {
     return teaObject
   }
 
+  const navigateToSearchPage = (keyword) => {
+    // e.preventDefault()
+    // const teaToSearchFor = e.target.value
+    setSelectedTea(keyword)
+    navigate(`/search/${keyword}`)
+}
+
   return (
     <div className="App">
-      <NavigationBar />
+      <NavigationBar navigateToSearchPage={navigateToSearchPage} />
       <Routes>
         <Route path='/' element={<Homepage setSelectedTeaCategory={setSelectedTeaCategory} teaList={teaList} />} />
         <Route path={`/search`} element={selectedTea && <TeaSearchResults teaToSearchFor={ selectedTea } />}>
-          {selectedTea && <Route path={`/search/${selectedTea}`} element={<TeaSearchResults teaToSearchFor={ selectedTea } />} />}
+          {selectedTea && <Route path={`/search/${selectedTea}`} element={<TeaSearchResults teaToSearchFor={ selectedTea } navigateToSearchPage={navigateToSearchPage}  />} />}
         </Route>
         {teaList.map((tea) =>
-          <Route key={tea.name} path={`/${tea.name}`} element={ <TeaSubTypePage key={tea.name} tea={tea} setSelectedTea={setSelectedTea} /> } /> 
+          <Route key={tea.name} path={`/${tea.name}`} element={ <TeaSubTypePage key={tea.name} tea={tea} setSelectedTea={setSelectedTea} navigateToSearchPage={navigateToSearchPage} /> } /> 
         )}
       </Routes>
     </div>

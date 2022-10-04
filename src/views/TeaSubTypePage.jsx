@@ -29,7 +29,7 @@ const dummyGreenTeaData = [
         englishName: "gyokuro"
     }]
 
-const TeaSubTypePage = ({ tea, setSelectedTea }) => {
+const TeaSubTypePage = ({ tea, setSelectedTea, navigateToSearchPage }) => {
     //for dev purposes
     /**
      * TODO: pull different subcategories of tea from a database (mongodb)
@@ -43,15 +43,13 @@ const TeaSubTypePage = ({ tea, setSelectedTea }) => {
     const [teaSubTypeList, setTeaSubTypeList] = useState([...dummyGreenTeaData])
     //note to self: if you want to use the navigate function to go to another page, make sure to have it defined first 
     // as is seen below. 
-    const navigate = useNavigate()
 
-    const navigateToSearchpage = (e) => {
-        // e.preventDefault()
-        const teaToSearchFor = e.target.name
-        setSelectedTea(teaToSearchFor)
-        navigate(`/search/${teaToSearchFor}`)
+    const handleSetSearch = (e) => {
+        e.preventDefault()
+        const teaToSearchFor = e.target.value
+        navigateToSearchPage(teaToSearchFor)
+      }
     
-    }
 
     return (
         <div className="d-grid gap-3" style={{ marginLeft: "40px", marginRight: "40px" }} >
@@ -62,8 +60,9 @@ const TeaSubTypePage = ({ tea, setSelectedTea }) => {
             size="lg"
             name={teaCategory.englishName}
             id={teaCategory.englishName}
-            onClick={navigateToSearchpage}
+            onClick={handleSetSearch}
             key={teaCategory.englishName}
+            value={teaCategory.englishName}
             >
                 {teaCategory.chineseName}
             </Button>
