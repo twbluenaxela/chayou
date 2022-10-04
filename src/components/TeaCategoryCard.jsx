@@ -18,18 +18,13 @@ const TeaCategoryCard = ({ tea, setSelectedTeaCategory }) => {
 
     return (
         <Card 
-        style={{ width: '18rem', height: '90vh', backgroundColor: color, cursor: "pointer", border: 'light' }} 
+        style={{ width: '18rem', height: '25rem', background: color, cursor: "pointer", border: 'light' }} 
         className="teaCard"
         onClick={handleSetTeaCategory}
         >
-            <Card.Img variant='center' src={teaIcon} />
-            <Card.ImgOverlay>
-            <Card.Body style={{ display: 'grid', placeItems: 'center' }} >
-                <Card.Title style={{ color: 'white', fontWeight: 'bold', fontSize: '25px' }}  >{type}</Card.Title>
+            <Card.Body className="teaCard teaCardBody" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }} >
+                <Card.Title style={{ fontWeight: 'bolder', fontSize: '35px' }} >{type}</Card.Title>
             </Card.Body>
-
-            </Card.ImgOverlay>
-
         </Card>
     )
 }

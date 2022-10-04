@@ -10,8 +10,13 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#" to="/" style={{ textDecoration: 'none' }}>
+            {
+              //remove this useles link later, id rather them click on the logo instead. 
+            }
+            <Nav.Link href="#" >
+              <Link to="/" style={{ textDecoration: 'none' }} >
                 首页
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

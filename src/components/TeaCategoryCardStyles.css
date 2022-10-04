@@ -1,5 +1,14 @@
+.teaCard {
+    --init-text-color: initial;
+    --init-background: var(--background, initial);
+}
+
 .teaCard:hover {
     box-shadow: 0px 8px 20px 5px rgb(156, 156, 156);
-    background-color: beige;
     transition: 0.2s;
+}
+
+.teaCardBody:hover {
+    background: white;
+    color: inherit!important;
 }
