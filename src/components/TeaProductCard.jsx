@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap"
 
 const TeaProductCard = ({ tea }) => {
-    console.log('Product card: ', tea)
-    console.log('Type of: ', typeof tea);
+    // console.log('Product card: ', tea)
+    // console.log('Type of: ', typeof tea);
     return (
         <div>
             <Card className="text-center" >

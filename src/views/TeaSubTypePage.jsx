@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useMatch, useParams, useNavigate } from "react-router-dom";
-import ListGroup from 'react-bootstrap/ListGroup';
+import teaCategoryService from '../services/teaCategories'
 import Button from 'react-bootstrap/Button';
 
 const dummyGreenTeaData = [
@@ -40,9 +39,17 @@ const TeaSubTypePage = ({ tea, setSelectedTea, navigateToSearchPage }) => {
      * etc
      */
 
-    const [teaSubTypeList, setTeaSubTypeList] = useState([...dummyGreenTeaData])
+    const [teaSubTypeList, setTeaSubTypeList] = useState([])
     //note to self: if you want to use the navigate function to go to another page, make sure to have it defined first 
     // as is seen below. 
+    useEffect(() => {
+        if(tea.type){
+            teaCategoryService.getTeaCategory(tea.name).then((fetchedCategories) => {
+                console.log('Retrieved categories from server: ', fetchedCategories)
+                setTeaSubTypeList(fetchedCategories)
+            })
+        }
+    }, [])
 
     const handleSetSearch = (e) => {
         e.preventDefault()
