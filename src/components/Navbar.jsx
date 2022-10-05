@@ -34,7 +34,7 @@ const NavigationBar = ({ navigateToSearchPage }) => {
     },
     {
       pinyin: 'pu er cha',
-      englishName: 'puerh'
+      englishName: 'pu-erh'
     },
     {
       pinyin: 'wu long cha',
