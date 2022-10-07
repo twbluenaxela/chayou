@@ -81,10 +81,11 @@ const NavigationBar = ({ navigateToSearchPage }) => {
               placeholder="搜索。。。"
               aria-label="Search"
               className="text-wrap"
+              id="search-input"
               value={searchTerm}
               onChange={({ target }) => setSearchTerm(target.value)}
             />
-            <Button variant="outline-success" type="submit" className="ms-2" >搜尋名茶</Button>
+            <Button variant="outline-success" type="submit" className="ms-2" id="search-button" >搜尋名茶</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
