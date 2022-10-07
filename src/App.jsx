@@ -18,7 +18,7 @@ const listOfTeas = [
   },
   {
       color: '#8b0000',
-      type: '普爾',
+      type: '普洱',
       name: 'puer'
   },
   {
