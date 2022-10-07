@@ -27,7 +27,7 @@ const TeaSubTypePage = ({ tea, setSelectedTea, navigateToSearchPage }) => {
     
 
     return (
-        <div className="d-grid gap-3" style={{ marginLeft: "40px", marginRight: "40px" }} >
+        <div className="d-grid gap-3" style={{ marginLeft: "40px", marginRight: "40px" }} id="teasubtypecontainer" >
             <h1 style={{ textAlign: "center", margin: "10px" }} >{tea.type}</h1>
             {teaSubTypeList.map((teaCategory) => (
             <Button 

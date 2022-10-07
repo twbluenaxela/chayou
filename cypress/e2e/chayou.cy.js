@@ -15,3 +15,28 @@ describe('frontend search bar', function () {
 
   })
 })
+
+describe('select a specific tea', function () {
+  it('search for oriental beauty', function () {
+    cy.visit(testingUrl)
+    cy.get('#root > div > div > div:nth-child(2) > div > div:nth-child(1)').click()
+    cy.get('#teasubtypecontainer').find('button').first().click()
+    cy.contains('Oriental Beauty', {timeout: 40000})
+
+  })
+})
+
+describe('search for another tea after previously searched for tea', function () {
+  beforeEach(function() {
+    cy.visit(testingUrl)
+    cy.get('#root > div > div > div:nth-child(2) > div > div:nth-child(1)').click()
+    cy.get('#teasubtypecontainer').find('button').first().click()
+    cy.contains('Oriental Beauty', {timeout: 40000})
+  })
+  it.only('search for assam tea after searching for oriental beauty', function () {
+    cy.get('#search-input').type('assam')
+    cy.get('#search-button').click()
+    cy.contains('Assam', {timeout: 40000})
+
+  })
+})
