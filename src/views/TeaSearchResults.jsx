@@ -6,20 +6,22 @@ import TeaPlaceholderProductCard from "../components/TeaPlaceholderProductCard";
 
 const TeaSearchResults = ({ teaToSearchFor }) => {
   const [teaResults, setTeaResults] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     teaService.fetchTeas(teaToSearchFor).then((fetchedTeas) => {
       console.log("Retrieved teas from server: ", fetchedTeas);
       setTeaResults(fetchedTeas);
+      setLoading(false)
     });
-  }, []);
+  }, [teaToSearchFor]);
 
   return (
     <div style={{ marginLeft: "40px", marginRight: "40px" }} >
       <h1 style={{ textAlign: "center", margin: "10px" }} >茶</h1>
-      {teaResults == [] && <Spinner animation="grow" />}
       <Row xs={1} md={4} className="g-4">
-        {teaResults ? 
+        {loading === false ? 
           teaResults.map((tea) => (
             <Col>
               <TeaProductCard tea={tea} />
