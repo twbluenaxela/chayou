@@ -23,7 +23,7 @@ const TeaCategoryCard = ({ tea, setSelectedTeaCategory }) => {
         onClick={handleSetTeaCategory}
         >
             <Card.Body className="teaCard teaCardBody" style={{ display: "flex", justifyContent: "center", alignItems: "center", color: "white" }} >
-                <Card.Title style={{ fontWeight: 'bolder', fontSize: '35px' }} >{type}</Card.Title>
+                <Card.Title style={{ fontWeight: 'bolder', fontSize: '35px' }}  >{type} {name}</Card.Title>
             </Card.Body>
         </Card>
     )

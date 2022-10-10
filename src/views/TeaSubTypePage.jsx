@@ -39,7 +39,7 @@ const TeaSubTypePage = ({ tea, setSelectedTea, navigateToSearchPage }) => {
             key={teaCategory.englishName}
             value={teaCategory.englishName}
             >
-                {teaCategory.chineseName}
+                {teaCategory.chineseName} {teaCategory.englishName}
             </Button>
             ))}
         </div>
