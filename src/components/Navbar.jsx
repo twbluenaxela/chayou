@@ -78,7 +78,7 @@ const NavigationBar = ({ navigateToSearchPage }) => {
           <Form className="d-flex me-4 " onSubmit={handleSetSearch} style={{ float: "right" }}  >
             <Form.Control
               type="search"
-              placeholder="搜索。。。"
+              placeholder="搜索。。。 Search"
               aria-label="Search"
               className="text-wrap"
               id="search-input"
